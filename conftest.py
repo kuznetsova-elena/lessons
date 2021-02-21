@@ -1,7 +1,7 @@
 from pytest import fixture
 from selenium import webdriver
 from config import Config
-from page_objects.MainPage import MainPage
+
 
 #
 # @fixture(scope='function')
@@ -52,7 +52,7 @@ def browser(request, url):
     driver.implicitly_wait(3)
     driver.maximize_window()
 
-    # request.addfinalizer(driver.quit)
+    request.addfinalizer(driver.quit)
 
     def open(path=""):
         return driver.get(url + path)

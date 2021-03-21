@@ -43,7 +43,8 @@ def pytest_addoption(parser):
     parser.addoption("--vnc", action="store_true", default=True)
     parser.addoption("--video", action="store_true", default=True)
 
-@fixture
+
+@fixture(scope='class')
 def url(request):
     return request.config.getoption("--url")
 
@@ -59,7 +60,7 @@ def app_config(env):
     return cfg
 
 
-@fixture
+@fixture(scope='class')
 def browser(request, url):
     """ Фикстура инициализации браузера """
     browser = request.config.getoption("--browser")

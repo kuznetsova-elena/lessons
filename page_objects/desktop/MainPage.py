@@ -9,6 +9,17 @@ class MainPage(BasePage):
     OPEN_CART_BUTTON = (By.CSS_SELECTOR, "button.mini-cart__button")
     PRODUCT_SNIPPET = (By.CSS_SELECTOR, "ul.menu-catalog > li:nth-child(1)")
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "div.base-modal__body>div>div>div>div>div>div:nth-child(2)>button>span")
+    HEADER_LOGO = (By.CSS_SELECTOR, "div.page-header__logo > svg")
+    HEADER_CITY = (By.CSS_SELECTOR, "div.page-header__city")
+    CONFIRM_CITY_BLOCK = (
+        By.XPATH, "//div[@class='page-container main-page__confirm-city confirm-city-block confirm-city-block_fixed']")
+    CONFIRM_CITY_BUTTON = (By.XPATH,
+                           "//button[@class='el-button base-button confirm-city-block__button el-button--primary base-button_theme_default']/span['Да, верно']")
+    SELECT_CITY_BUTTON = (By.XPATH,
+                          "//button[@class='el-button base-button confirm-city-block__button el-button--primary base-button_theme_gray']/span['Другой']")
+    LOGIN_BUTTON = (By.XPATH, "//div[span='Вход на сайт']")
+    USER_BUTTON = (By.XPATH, "//div[@class='page-header__menu-item page-header__menu-item_user']/span")
+    NAV_MENU = (By.XPATH, "//nav[@class='page-header-navigation']/a[1]")
 
     def click_product(self, product_locator):
         self._click(product_locator)

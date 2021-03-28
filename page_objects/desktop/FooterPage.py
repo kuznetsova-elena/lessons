@@ -3,7 +3,7 @@ from page_objects.BasePage import BasePage
 
 
 class FooterPage(BasePage):
-    ABOUT_US_TITLE = (By.XPATH, "//div/span[contains(., 'О нас')]")
+    ABOUT_US_TITLE = (By.XPATH, "/span[contains(., 'О нас')]")
     CONTACTS_TITLE = (By.XPATH, "//div/span[contains(., 'Контакты')]")
     SUBSCRIBE_TITLE = (By.XPATH, "//div/span[contains(., 'Подписывайтесь на рассылку')]")
     WORK_IN_MCDONALDS = (By.LINK_TEXT, "Работа в Макдоналдс")

@@ -28,6 +28,7 @@ def url_data(url, timeout=10):
 def pytest_runtest_makereport(item, call):
     outcome = yield
     rep = outcome.get_result()
+
     if rep.outcome != 'passed':
         item.status = 'failed'
     else:
@@ -44,7 +45,7 @@ def pytest_addoption(parser):
     parser.addoption("--video", action="store_true", default=True)
 
 
-@fixture(scope='class')
+@fixture(scope='session')
 def url(request):
     return request.config.getoption("--url")
 
@@ -60,7 +61,7 @@ def app_config(env):
     return cfg
 
 
-@fixture(scope='class')
+@fixture
 def browser(request, url):
     """ Фикстура инициализации браузера """
     browser = request.config.getoption("--browser")
@@ -88,7 +89,6 @@ def browser(request, url):
 
     def finalizer():
         video_url = f"http://{executor}:8080/video/{driver.session_id}.mp4"
-
         driver.quit()
 
         if request.node.status != 'passed':

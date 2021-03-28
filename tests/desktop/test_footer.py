@@ -1,8 +1,10 @@
 from page_objects.desktop.MainPage import MainPage
 from page_objects.desktop.CartPage import CartPage
 from page_objects.desktop.FooterPage import FooterPage
+import pytest
 
 
+@pytest.mark.usefixtures('browser')
 class FooterTests:
     def test_is_title_about_us_present(self, browser):
         title = FooterPage.ABOUT_US_TITLE

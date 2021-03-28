@@ -38,7 +38,7 @@ def pytest_addoption(parser):
     parser.addoption("--browser", "-B", action="store", default="chrome", help="choose your browser")
     parser.addoption("--url", "-U", action="store", default="https://mcdonalds.ru", help="choose your browser")
     parser.addoption("--env", action="store", default="prod", help="Environment to run tests against")
-    parser.addoption("--executor", action="store", help="Remote selenium host")
+    parser.addoption("--executor", action="store", default='172.17.0.1', help="Remote selenium host")
     parser.addoption("--browser_version", action="store", help="Remote selenium host")
     parser.addoption("--vnc", action="store_true", default=True)
     parser.addoption("--video", action="store_true", default=True)

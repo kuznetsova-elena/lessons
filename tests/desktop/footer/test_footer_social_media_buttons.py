@@ -1,12 +1,11 @@
-from page_objects.BasePage import BasePage
-from page_objects.desktop.FooterPage import FooterPage
-
 import pytest
 
+from page_objects.desktop.FooterPage import FooterPage
 
-def test_instagram_button(browser, scroll_down_to_bottom, page):
-    page.go_to_third_party_site(FooterPage.INSTAGRAM_ICON)
-    assert browser.current_url == f"{page.INSTAGRAM}"
+@pytest.mark.parametrize("td", [(FooterPage.INSTAGRAM_ICON, FooterPage.INSTAGRAM)])
+def test_instagram_button(browser, scroll_down_to_bottom, page, td):
+    page.go_to_third_party_site(td[0])
+    assert browser.current_url == f"{td[1]}"
 
 
 def test_facebook_button(browser, scroll_down_to_bottom, page):

@@ -52,4 +52,3 @@ def test_subscription_unsuccess_with_empty_checkbox(browser, scroll_down_to_bott
     assert page.find_element(FooterPage.SUCCESS_SUBSCRIPTION_TITLE).text == "Подписывайтесь на рассылку"
     assert "Соглашаюсь на обработку персональных данных*" in browser.page_source
     assert page.cannot_find_element(FooterPage.SUBSCRIBE_MORE_BUTTON) == "NoSuchElementException"
-

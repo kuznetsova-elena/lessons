@@ -1,4 +1,7 @@
 import allure
+import selenium
+import time
+
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -37,14 +40,14 @@ class BasePage:
 
     @allure.step("Проверяю наличие текста на странице")
     def is_text_presented_on_page(self, locator: tuple):
-        element = self.browser.find_element(*locator)
+        element = self.verify_element_on_page(locator)
         return element
 
     @allure.step("Клик по кнопке {locator}")
     def go_to_third_party_site(self, locator: tuple):
 
         old_tabs = self.browser.window_handles
-        self.verify_element_on_page(locator)
+        self.verify_element_on_page(locator).click()
         new_tabs = self.browser.window_handles
         for tab in new_tabs:
             if tab in old_tabs:

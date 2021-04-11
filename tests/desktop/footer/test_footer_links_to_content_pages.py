@@ -1,3 +1,7 @@
+import pytest
+
+from collections import namedtuple
+
 from page_objects.desktop.WorkAtMcdonaldsPage import WorkAtMcdonaldsPage
 from page_objects.desktop.McdonaldsInRussiaPage import McdonaldsInRussiaPage
 from page_objects.desktop.CharityPage import CharityPage
@@ -9,22 +13,25 @@ from page_objects.desktop.ForMediaPage import ForMediaPage
 from page_objects.desktop.CooperationPage import CooperationPage
 from page_objects.desktop.FooterPage import FooterPage
 
+TestData = namedtuple("TestData", ["footer_link", "page_title", "expected_url", "expected_title"])
 
-def test_link_work_at_mcdonalds(browser, url, page):
-    page.click_link(FooterPage.WORK_IN_MCDONALDS)
-    page_title = page.is_text_presented_on_page(WorkAtMcdonaldsPage.PAGE_TITLE).text
+data_list = [
+    TestData(FooterPage.WORK_IN_MCDONALDS, WorkAtMcdonaldsPage.PAGE_TITLE, WorkAtMcdonaldsPage.URL, "Присоединяйся к нашей команде!"),
+    TestData(FooterPage.MCDONALDS_IN_RUSSIA, McdonaldsInRussiaPage.PAGE_TITLE, McdonaldsInRussiaPage.URL, "Макдоналдс в России")
+]
 
-    assert browser.current_url == f"{url}{WorkAtMcdonaldsPage.URL}"
-    assert "Присоединяйся к нашей команде!" == page_title
+test_ids = [
+    data_list[0].expected_title,
+    data_list[1].expected_title,
+]
 
+@pytest.mark.parametrize("td", data_list, ids=test_ids)
+def test_link_work_at_mcdonalds(browser, url, page, td):
+    page.click_link(td.footer_link)
+    page_title = page.is_text_presented_on_page(td.page_title).text
 
-def test_link_mcdonalds_in_russia(browser, url, page):
-    page_title = "Макдоналдс в России"
-    page.click_link(FooterPage.MCDONALDS_IN_RUSSIA)
-    text = page.is_text_presented_on_page(McdonaldsInRussiaPage.PAGE_TITLE).text
-
-    assert browser.current_url == f"{url}{McdonaldsInRussiaPage.URL}"
-    assert text == page_title
+    assert browser.current_url == f"{url}{td.expected_url}"
+    assert td.expected_title == page_title
 
 
 def test_link_charity(browser, url, page):

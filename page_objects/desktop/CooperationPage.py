@@ -3,7 +3,7 @@ from page_objects.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
 
-class PartnershipPage(BasePage):
-    URL = "/page/contacts/media"
+class CooperationPage(BasePage):
+    URL = "/page/contacts/cooperation"
 
     PAGE_TITLE = (By.CSS_SELECTOR, "h1.contacts__heading-title.-center-xs")

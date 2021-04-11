@@ -1,10 +1,9 @@
 from page_objects.BasePage import BasePage
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.common.by import By
 
 
-class NewsPage(BasePage):
-    URL = "/articles/news"
+class DeliveryPage(BasePage):
+    URL = "/menu/delivery"
 
-    PAGE_TITLE = (By.CSS_SELECTOR, "h1.page-heading__title")
+    PAGE_TITLE = (By.CSS_SELECTOR, "a.delivery__link.nuxt-link-exact-active.nuxt-link-active > span")

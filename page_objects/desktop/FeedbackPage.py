@@ -3,7 +3,7 @@ from page_objects.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
 
-class DeliveryPage(BasePage):
-    URL = "/menu/delivery"
+class FeedbackPage(BasePage):
+    URL = "/page/contacts/feedback"
 
-    PAGE_TITLE = (By.CSS_SELECTOR, "a.delivery__link.nuxt-link-exact-active.nuxt-link-active > span")
+    PAGE_TITLE = (By.CSS_SELECTOR, "h1.contacts__heading-title")
